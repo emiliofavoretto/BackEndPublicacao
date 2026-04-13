@@ -1,0 +1,16 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+}
+
+model Exemplo {
+    id        Int       @id @default(autoincrement())
+    nome      String
+    foto      String?
+    documento String?
+
+    @@map("exemplo")
+}

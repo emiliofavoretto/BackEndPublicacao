@@ -6,16 +6,19 @@ export const criar = async (req, res) => {
             return res.status(400).json({ error: 'Corpo da requisição vazio. Envie os dados!' });
         }
 
-        const { nome, estado, preco } = req.body;
+        const { nome, foto, documento } = req.body;
 
         if (!nome){
             return res.status(400).json({ error: 'O campo "nome" é obrigatório!' });
         }
-        if (preco === undefined || preco === null) {
+        if (!foto === undefined || foto === null) {
+            return res.status(400).json({ error: 'O campo "preco" é obrigatório!' });
+        }
+        if (!documento === undefined || documento === null) {
             return res.status(400).json({ error: 'O campo "preco" é obrigatório!' });
         }
 
-        const exemplo = new ExemploModel({ nome, foto, documento: parseFloat(preco) });
+        const exemplo = new ExemploModel({ nome, foto, documento: parseFloat(foto) });
         const data = await exemplo.criar();
 
         return res.status(201).json({ message: 'Registro criado com sucesso!', data });
